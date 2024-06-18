@@ -19,11 +19,9 @@ public:
 
             map[curr] = true;
 
-            if(curr->next != NULL){
+            
                 curr = curr->next;
-            }else{
-                break;
-            }
+            
         }
 
         return false;
