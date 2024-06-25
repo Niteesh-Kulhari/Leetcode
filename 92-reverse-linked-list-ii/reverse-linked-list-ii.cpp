@@ -13,23 +13,26 @@ public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         ListNode *dummy = new ListNode(0);
         dummy->next = head;
-        ListNode *prev = dummy;
+        ListNode *leftPrev = dummy;
         
 
         for(int i=0; i<left-1; i++){
-            prev = prev->next;
+            leftPrev = leftPrev->next;
         }
 
-        ListNode* curr = prev->next;
-        ListNode* next = nullptr;
+        ListNode* curr = leftPrev->next;
+        ListNode* prev = nullptr;
 
         // Reverse the sublist between left and right
-        for (int i = 0; i < right - left; i++) {
-            next = curr->next;
-            curr->next = next->next;
-            next->next = prev->next;
-            prev->next = next;
+        for (int i = 0; i < right - left + 1; i++) {
+           ListNode* temp = curr->next;
+           curr->next = prev;
+           prev = curr;
+           curr = temp;
         }
+
+        leftPrev->next->next = curr;
+        leftPrev->next = prev;
 
         // Return the new head, which is `dummy->next`
         return dummy->next;
