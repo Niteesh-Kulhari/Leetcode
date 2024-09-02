@@ -39,29 +39,4 @@ public:
 
         return ans;
     }
-
-// private:
-
-//     void solve1(TreeNode* root, vector<int>& ans){
-//         if(root == NULL){
-//             return;
-//         }
-
-//         ans.push_back(root->val);
-
-//         if(root->right){
-//             solve(root->right, ans);
-//         }
-
-//         if(root->left){
-//             solve(root->left, ans);
-//         }
-
-//     }
-
-//     void solve2(TreeNode* root, vector<int>& ans){
-//         if(root == NULL){
-//             return
-//         }
-//     }
 };
