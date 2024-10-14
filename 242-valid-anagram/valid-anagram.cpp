@@ -5,19 +5,15 @@ public:
             return false;
         }
 
-        unordered_map<char, int> sMap;
-        unordered_map<char, int> tMap;
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
 
-        for(int i = 0; i < s.length(); i++){
-            sMap[s[i]]++;
-            tMap[t[i]]++;
-        }
-
-        for( int i = 0; i < sMap.size(); i++){
-            if(sMap[i] != tMap[i]){
+        for (int i=0; i<s.length(); i++){
+            if(s[i] != t[i]){
                 return false;
             }
         }
+
 
         return true;
     }
