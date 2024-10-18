@@ -22,7 +22,7 @@ public:
 
         while( i < s.length()){
             int j = s.find("#", i);
-            int length = stoi(s.substr(i, j));
+            int length = stoi(s.substr(i, j-i));
             i = j+1;
             string temp = s.substr(i, length);
             ans.push_back(temp);
