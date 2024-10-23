@@ -11,7 +11,7 @@ public:
         int currentStreak = 1;
 
         for(int i=1; i<n; i++){
-
+            
             if(nums[i] != nums[i-1]){
                 if( nums[i] == nums[i-1] + 1){
                 currentStreak++;
