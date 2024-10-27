@@ -9,9 +9,6 @@ public:
             positions.push_back({position[i], time});
         }
         sort(positions.begin(), positions.end());
-        for( auto pos: positions){
-            cout << "Position: " << pos.first << " Time: " << pos.second << endl;
-        }
 
         float maxTime = 0.0;
         int count = 0;
