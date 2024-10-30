@@ -1,17 +1,20 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> set1(nums1.begin(), nums1.end());
-        unordered_set<int> set2(nums2.begin(), nums2.end());
+       unordered_map<int,int> mp;
         vector<int> ans;
 
-        for(int num: set1){
-            if(set2.find(num) != set2.end()){
-                ans.push_back(num);
-            }
+       for(int num : nums1){
+        mp[num]++;
+       }
+
+       for( int num: nums2){
+        if(mp.count(num) && mp[num] > 0){
+            ans.push_back(num);
+            mp[num] = 0;
         }
+       }
 
-
-        return ans;
+       return ans;
     }
 };
