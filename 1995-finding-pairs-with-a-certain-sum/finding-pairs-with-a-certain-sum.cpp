@@ -13,17 +13,10 @@ unordered_map<int, int> mp;
     }
     
     void add(int index, int val) {
-        if(mp.find(v2[index]) != mp.end()){
-            mp[v2[index]]--;
-            v2[index] += val;
-            mp[v2[index]]++;
-        }
-        
-        // if(mp.find(v2[index]) != mp.end()){
-        //     mp[v2[index]]++;
-        // }else{
-        //     mp[v2[index]] = 1;
-        // }
+        mp[v2[index]]--;
+        if(mp[v2[index]] == 0) mp.erase(v2[index]);
+        v2[index] += val;
+        mp[v2[index]]++;
     }
     
     int count(int tot) {
