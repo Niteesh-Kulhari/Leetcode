@@ -23,7 +23,7 @@ unordered_map<int, int> mp;
         int count = 0;
         for(int num : v1){
             int toFind = tot - num;
-            if(toFind >= 0 && mp.find(toFind) != mp.end() && mp[toFind] > 0){
+            if(mp.find(toFind) != mp.end()){
                 count += mp[toFind];
             }
         }
