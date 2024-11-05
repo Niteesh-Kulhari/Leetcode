@@ -6,7 +6,7 @@ public:
         int left = 0, right = 0;
         int zeroCount = 0;
 
-        while( right < n){
+       for(int right = 0; right <n; right++){
             if(nums[right] == 0){
                 zeroCount++;
             }
@@ -17,11 +17,8 @@ public:
                 }
                 left++;
             }
-
-            right++;
-
-            maxLength = max(maxLength, right - left);
-        }
+            maxLength = max(maxLength, right - left + 1);
+       }
 
         return maxLength;
     }
