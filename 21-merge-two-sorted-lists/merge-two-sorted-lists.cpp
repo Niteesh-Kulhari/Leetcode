@@ -18,38 +18,43 @@ public:
         if(list2 == NULL){
             return list1;
         }
-
-        ListNode* head = NULL;
-        ListNode* curr = NULL;
+        ListNode *head = NULL;
+        ListNode *curr = NULL;
 
         while(list1 != NULL && list2 != NULL){
-            if(list1->val < list2->val){
-                if(head == NULL){
-                    head = list1;
-                    curr = head;
-                    list1 = list1->next;
-                }else{
-                    curr->next = list1;
-                    curr = curr->next;
-                    list1 = list1->next;
-                }
+            if(list1->val > list2->val){
+               if(head == NULL){
+                head = list2;
+                list2 = list2->next;
+                curr = head;
+               }else{
+                curr->next = list2;
+                list2 = list2->next;
+                curr = curr->next;
+               }
             }else{
                 if(head == NULL){
-                    head = list2;
-                    curr = head;
-                    list2 = list2->next;
-                }else{
-                    curr->next = list2;
-                    curr = curr->next;
-                    list2 = list2->next;
-                }
+                head = list1;
+                list1 = list1->next;
+                curr = head;
+               }else{
+                curr->next = list1;
+                list1 = list1->next;
+                curr = curr->next;
+               }
             }
         }
 
-        if(list1 != NULL){
+        while(list1 != NULL){
             curr->next = list1;
-        }else{
+            list1 = list1->next;
+            curr = curr->next;
+        }
+
+        while(list2 != NULL){
             curr->next = list2;
+            list2 = list2->next;
+            curr = curr->next;
         }
 
         return head;
