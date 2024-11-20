@@ -1,18 +1,24 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int n = nums.size();
-        vector<int> vis(n, -1);
-        int ans = 0;
+        int low = 1;
+        int high = nums.size() - 1;
 
-        for(int i=0; i<n; i++){
-            if(vis[nums[i]] != -1){
-                ans = nums[i];
-                break;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            
+            int count = 0;
+            for(int num: nums){
+                if(num <= mid) count++;
             }
-            vis[nums[i]] = 0;
+
+            if(mid < count){
+                high = mid-1;
+            }else{
+                low = mid+1;
+            }
         }
 
-        return ans;
+        return low;
     }
 };
