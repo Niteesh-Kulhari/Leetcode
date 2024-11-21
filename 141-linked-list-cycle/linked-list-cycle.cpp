@@ -14,7 +14,7 @@ public:
         ListNode* temp = head;
 
         while(temp != NULL){
-            if(mp.find(temp) != mp.end() ){
+            if(mp[temp] ){
                 return true;
             }
             mp[temp] = true;
