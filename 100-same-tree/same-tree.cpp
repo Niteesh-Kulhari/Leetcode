@@ -10,30 +10,20 @@
  * };
  */
 class Solution {
-public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
-        if(p == NULL && q == NULL){
-            return true;
-        }
+private:
+    bool find(TreeNode* p, TreeNode* q){
+        if(p == NULL && q != NULL || p != NULL & q == NULL) return false;
+        if(p == NULL && q == NULL ) return true;
+        if(p->val != q->val) return false;
+        bool left = find(p->left, q->left);
+        bool right = find(p->right, q->right);
 
-        if(p == NULL && q != NULL){
-            return false;
-        }
-
-        if(p != NULL && q == NULL){
-            return false;
-        }
-
-        bool left = isSameTree(p->left, q->left);
-        bool right = isSameTree(p->right, q->right);
-
-        bool value = p->val == q->val;
-
-
-        if(left && right && value){
-            return true;
-        }
+        if( left && right ) return true;
 
         return false;
+    }
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        return find(p, q);
     }
 };
