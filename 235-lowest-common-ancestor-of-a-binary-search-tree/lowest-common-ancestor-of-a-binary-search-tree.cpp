@@ -9,28 +9,20 @@
  */
 
 class Solution {
-private:
-    bool find(TreeNode* root, TreeNode*p, TreeNode* q, TreeNode*& ans){
-        if(root == NULL){
-            return false;
-        }
-
-        bool current = (root == p || root == q);
-
-        bool left = find(root->left, p, q, ans);
-        bool right = find(root->right, p, q, ans);
-
-        if(current + left + right >= 2) ans = root;
-
-        return left || right || current;
-
-    }
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        TreeNode* ans = NULL;
+        if (!root || !p || !q) {
+            return nullptr;
+        }
 
-        find(root, p, q, ans);
+        if(max(p->val, q->val) < root->val){
+            return lowestCommonAncestor(root->left, p, q);
+        }
 
-        return ans;
+        if(min(p->val, q->val) > root->val){
+            return lowestCommonAncestor(root->right, p, q);
+        }
+
+        return root;
     }
 };
