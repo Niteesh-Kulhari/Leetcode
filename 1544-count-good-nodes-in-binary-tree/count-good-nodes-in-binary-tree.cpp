@@ -18,8 +18,8 @@ private:
             currMax = root->val;
         }
 
-        find(root->left, count, currMax);
-        find(root->right, count, currMax);
+        if(root->left) find(root->left, count, currMax);
+        if(root->right) find(root->right, count, currMax);
 
     }
 public:
