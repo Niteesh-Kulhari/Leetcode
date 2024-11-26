@@ -10,18 +10,25 @@
  * };
  */
 class Solution {
+private:
+    void inOrder(TreeNode* root, vector<int>& order){
+        if(root == NULL) return;
+
+        inOrder(root->left, order);
+        order.push_back(root->val);
+        inOrder(root->right, order);
+    }
 public:
     bool isValidBST(TreeNode* root) {
-        bool ans = valid(root, LONG_MIN, LONG_MAX);
-        return ans;
-    }
-
-private: 
-    bool valid(TreeNode* root, long lr, long ur){
         if(root == NULL) return true;
-        if(root->val <= lr || root->val >= ur) return false;
-        bool left = valid(root->left, lr, root->val);
-        bool right = valid(root->right, root->val, ur);
-        return left && right;
+
+        vector<int> order;
+        inOrder(root, order);
+
+        for(int i=0; i<order.size()-1; i++){
+            if(order[i] >= order[i+1]) return false;
+        }
+
+        return true;
     }
 };
