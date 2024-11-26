@@ -16,7 +16,10 @@ private:
 
         inOrder(root->left, count, ans, k);
         count++;
-        if(count == k) ans = root->val;
+        if(count == k){
+            ans = root->val;
+            return;
+        }
         inOrder(root->right, count, ans, k);
     }
 public:
