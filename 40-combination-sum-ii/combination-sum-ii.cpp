@@ -12,6 +12,7 @@ private:
             if(i>index && candidates[i] == candidates[i-1]){
                 continue;
             }
+            if(candidates[i] > remain) break;
             comb.push_back(candidates[i]);
             backTrack(candidates, ans, comb, i+1, remain - candidates[i]);
             comb.pop_back();
