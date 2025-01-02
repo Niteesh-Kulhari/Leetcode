@@ -1,41 +1,45 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        unordered_map<char,string> mp;
-        unordered_map<string, char> mp2;
+        unordered_map<char, string> charToString;
+        unordered_map<string, char> stringToChar;
         vector<string> words;
+        int left = 0;
 
-        stringstream ss(s);
-
-        string word;
-
-        while(ss >> word){
-            words.push_back(word);
+        while (left < s.length()) {
+            string temp = "";
+            while (left < s.length() && s[left] != ' ') {
+                temp += s[left];
+                left++;
+            }
+            words.push_back(temp);
+            left++; // Move past the space
         }
 
-        if (pattern.length() != words.size()) {
+        if(words.size() != pattern.length()){
             return false;
         }
 
-        for(int i = 0; i < pattern.size(); i++){
-            if( mp.count(pattern[i]) && mp[pattern[i]] != words[i] ){
-                return false;
+        for(int i=0; i<pattern.length(); i++){
+
+            if(charToString.find(pattern[i]) != charToString.end()){
+                if(charToString[pattern[i]] != words[i]){
+                    return false;
+                }
+            }else{
+                charToString[pattern[i]] = words[i];
             }
 
-            if( mp2.count(words[i]) && mp2[words[i]] != pattern[i]){
-                return false;
+            if(stringToChar.find(words[i]) != stringToChar.end()){
+                if(stringToChar[words[i]] != pattern[i]){
+                    return false;
+                }
+            }else{
+                stringToChar[words[i]] = pattern[i];
             }
 
-            mp[pattern[i]] = words[i];
-            mp2[words[i]] = pattern[i];
         }
 
-        // for(int i=0; i<words.size(); i++){
-        //     cout << words[i] << " ";
-        // }
-
-
-
-        return true;
+        return left >= s.length();
     }
 };
