@@ -6,11 +6,7 @@ public:
     }
     
     void add(int key) {
-        if(hashSet.find(key) != hashSet.end()){
-        }else{
-            hashSet[key] = true;
-        }
-
+        hashSet[key] = true;
     }
     
     void remove(int key) {
