@@ -1,18 +1,17 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>, greater<int>> q;
+        priority_queue<int, vector<int>, greater<int>> minHeap;
 
-        for(int i=0; i<nums.size(); i++){
-            q.push(nums[i]);
-
-            if(q.size() > k){
-                q.pop();
+        for(int num: nums){
+            minHeap.push(num);
+            while(minHeap.size() > k){
+                minHeap.pop();
             }
         }
 
-        return q.top();
+        cout << minHeap.size() << endl;
 
-
+        return minHeap.top();
     }
 };
