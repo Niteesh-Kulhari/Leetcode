@@ -10,8 +10,6 @@ public:
             }
         }
 
-        cout << minHeap.size() << endl;
-
         return minHeap.top();
     }
 };
